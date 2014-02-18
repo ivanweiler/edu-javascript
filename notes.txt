@@ -1,0 +1,56 @@
+
+ - vise kracih radionica (2h max), zaokruzene cjeline!
+
+Basics Of Javascript (basic)
+
+Debugging and Testing // Tools
+Variables
+Statements
+Everything is an Object
+Dom and global variables
+Functions
+Include and Run in html
+Cross browser compatibility and mobile
+
+Dom, BOM and Selectors (basic)
+
+Events (medium)
+	- load, domready, click, change, focus, blur, keyup, itd.
+	- touch !!
+
+Prototyping (medium) - ovo moze brzo ako se ne ide duboko, uz sta bi se dalo ugurat?
+Contex / scope (advanced) - ovo ne moze brzo
+ - ovo bi bilo super skupa, al bar 3 sata treba!
+ - gdje sa bind/call/apply??
+
+Practical Javascript - Ajax and Storage (medium) ; XHR2, local storage
+	- show how to debug (Chrome, Firecookie)
+	- bilo bi bolje ajax zasebno? iframe, xhr2, etc.
+	- explain cross domain
+	- json
+
+Practical Javascript - Animations and Timers (setTimeout, setInterval, ono novo, css transition hooks)
+
+Practical Javascript - Responsive XYZ (medium) - matchMedia + screen + resize/orientation + touch + scroll
+Practical Javascript - Debug mobile - moze pod ovo gore .. Responsive and Mobile
+
+Practical Javascript - HTML5 apis (bad name!) Modernizr + geo + upload on mobile + full screen + video
+Practical Javascript - Custom topic by Inchoo developers (modernizr, jquery, ..)
+
+Practical Javascript - Canvas  - image filter, animation
+
+Prototype (as prototype.js framework)
+Magento javascript (custom Validator, Varien Form, etc.)
+
+jQuery - low priority
+
+Projects - html5 modalbox, fancySelect, responsive slider, offCanvas, etc.
+
+****************************************
+
+#engine
+	- cjeline trebaju biti odvojene, slide sistem
+	- editor je okej
+	- dodat inchoo styling
+	- treba imat "View All" -> Mode: slide/normal
+

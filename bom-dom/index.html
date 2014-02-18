@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>Inchoo javascript workshop</title>
+<link rel="stylesheet" href="../_engine/codemirror/codemirror.css">
+<link rel="stylesheet" href="../_engine/style.css">
+<style>
+.lol { width: 100px; height: 100px; background-color: red; }
+</style>
+</head>
+
+<body>
+<h1>Bom, Dom, Selectors</h1>
+
+<h2>BOM - Browser Object Model</h2>
+
+<h3>Window Object</h3>
+<pre>
+The window object is supported by all browsers. It represent the browser's window.
+All global JavaScript objects, functions, and variables automatically become members of the window object.
+</pre>
+
+<form>
+<textarea>
+console.log(window.screen);
+console.log(window.navigator);
+console.log(window.location);
+
+//window.open(); //popup
+//window.alert(); prompt(), confirm()
+//print()
+
+</textarea>
+<button type="button">Reset</button><button type="submit">Run</button>
+</form>
+
+
+<h2>Dom - Document Object Model</h2>
+<h3>Html DOM</h3>
+<pre>
+When a web page is loaded, the browser creates a Document Object Model of the page.
+The HTML DOM model is constructed as a tree of Objects:
+</pre>
+<img src="pic_htmltree.gif" />
+
+<pre>
+Html tags + Text + Comments + .. (NODES)
+The HTML DOM is a standard for how to get, change, add, or delete HTML elements.
+
+Child, parent, sibling, ancestor, descendant.
+</pre>
+
+<!--
+<h3>We're the Millers</h3>
+<pre>
+Child, parent, sibling, ancestor, descendant.
+</pre>
+-->
+
+<h3>Document Object</h3>
+<pre>
+The document object is the root node of the HTML document and the "owner" of all other nodes:
+(element nodes, text nodes, attribute nodes, and comment nodes).
+
+The document object provides properties and methods to access all node objects, from within JavaScript.
+</pre>
+<form class="small">
+<textarea>
+
+//The document is a part of the window object and can be accessed as window.document
+console.log(window.document);
+console.log(document);
+console.log(document.body);
+console.log(document.cookie);
+
+</textarea>
+<button type="button">Reset</button><button type="submit">Run</button>
+</form>
+
+<h3>Element Object</h3>
+<pre>Element object represents an HTML element.</pre>
+<form id="test-form-1">
+<textarea>
+//The easiest way to modify the content of an HTML element is by using the innerHTML property
+console.log(document.body.innerHTML);
+
+//console.log(document.body.style);
+
+document.getElementById('dummy-1').className = "lol";
+
+//id, href, className, value, .. Element.getAttribute(), Element.setAttribute()
+
+
+
+/*
+for(var i=0; i<document.body.childNodes.length; i++) {
+	console.log(document.body.childNodes[i]);
+}
+*/
+
+//Element.firstChild, Element.nextSibling, Node.nodeType, Element.tagName ..
+
+</textarea>
+<button type="button">Reset</button><button type="submit">Run</button>
+</form>
+<div id="dummy-1" data-x="123" lol="xyz"></div>
+<pre>
+Which style does Element.style changes?
+Element vs Node
+</pre>
+
+<h3>DOM Manipulation</h3>
+<form id="test-form-2">
+<textarea>
+//to create: createElement(), createTextNode(), cloneNode()
+//to insert: appendChild(), insertBefore()
+
+var ga = document.createElement('script');
+ga.type = 'text/javascript';
+ga.innerHTML = 'alert("Inchoo");';
+var head = document.getElementsByTagName('head')[0]; 
+head.appendChild(ga);
+
+/*
+var text = document.createTextNode('alert(567);');
+ga.appendChild(text);
+*/
+
+</textarea>
+<button type="button">Reset</button><button type="submit">Run</button>
+</form>
+<div id="dummy-2"></div>
+
+<h2>Selectors</h2>
+<h3>Oldies</h3>
+<form>
+<textarea>
+document.getElementById()
+
+document.getElementsByTagName()
+Element.getElementsByTagName()
+
+document.getElementsByName(name) 
+
+document.anchors
+document.forms
+document.images
+document.links
+</textarea>
+<button type="button">Reset</button><button type="submit">Run</button>
+</form>
+
+<h3>Lady Gaga</h3>
+<form>
+<textarea>
+document.getElementsByClassName()
+Element.getElementsByClassName()
+
+element = document.querySelector(selectors);
+elementList = document.querySelectorAll(selectors);
+</textarea>
+<button type="button">Reset</button><button type="submit">Run</button>
+</form>
+<pre>Which JS lib has the best selector engine?</pre>
+
+<h3>Sizzle - Fo' shizzle my nizzle</h3>
+<pre>JavaScript Selector Library. Supports virtually all CSS 3 Selectors!</pre>
+<form class="small">
+<textarea>
+$('div.lol')
+$("*")
+$("p:first")
+$("a[target!='_blank']")
+$("form input:button")
+$("form input[name='gender']:radio")
+</textarea>
+<button type="button">Reset</button>
+</form>
+<pre>
+http://api.jquery.com/category/selectors/
+</pre>
+
+
+<h3>Prepare html, not other way around</h3>
+<form class="small">
+<textarea data-type="html">
+&lt;img class="lightbox" /&gt;
+&lt;img rel="lightbox" /&gt;
+&lt;img data-xyz="lightbox" /&gt;
+	
+
+&lt;form id="ajax-form" /&gt;
+	&lt;p id="ajax-form-message" /&gt;
+</textarea>
+<button type="button">Reset</button>
+</form>
+
+<pre>
+Custom attributes are ussualy slower then class, but they won't bloat styling.
+I ussualy group functionalities by ID, you need to help selectors where possible.
+</pre>
+
+
+<h2>Additional</h2>
+<h3>Todo</h3>
+<pre>
+Redirect example
+Detect iOS
+Advanced selector example $()+querySelectorAll()
+Examine setCookie() function at the bottom of this page source
+</pre>
+
+<h3>Resources</h3>
+<pre>
+http://www.w3schools.com/jsref/obj_window.asp
+http://www.w3schools.com/jsref/dom_obj_document.asp
+http://www.w3schools.com/jsref/dom_obj_all.asp
+
+http://api.jquery.com/category/selectors/
+https://developer.mozilla.org/en-US/docs/Web/API/Document.querySelectorAll
+http://stackoverflow.com/a/11503576
+</pre>
+
+<!--
+<h2>Subtitle</h2>
+
+<h3>Dummy</h3>
+<pre>
+
+</pre>
+<form class="small">
+<textarea>
+console.log(123);
+</textarea>
+<button type="button">Reset</button><button type="submit">Run</button>
+</form>
+-->
+
+<p class="foot">2013 Ivan Weiler @ Inchoo</p>
+
+<script src="../_engine/jquery-2.0.3.min.js"></script>
+<script src="../_engine/codemirror/codemirror.js"></script>
+<script src="../_engine/codemirror/javascript.js"></script>
+<script src="../_engine/codemirror/xml.js"></script>
+<script src="../_engine/codemirror/css.js"></script>
+<script src="../_engine/codemirror/htmlmixed.js"></script>
+<script src="../_engine/script.js"></script>
+<script>
+<!-- custom js goes here -->	
+
+function setCookie(name, value, expires, path, domain, secure){
+	document.cookie = name + "=" + escape(value) + "; ";
+	
+	if(expires){
+		var today = new Date();
+		var expr = new Date(today.getTime() + expires * 24 * 60 * 60 * 1000);
+		expires = expr.toGMTString();
+		
+		document.cookie += "expires=" + expires + "; ";
+	}
+	if(path){
+		document.cookie += "path=" + path + "; ";
+	}
+	if(domain){
+		document.cookie += "domain=" + domain + "; ";
+	}
+	if(secure){
+		document.cookie += "secure; ";
+	}
+}
+
+setCookie('inchoo1', 12345);
+setCookie('inchoo2', 'Lorem ipsum sut amet', 3);
+
+</script>
+</body>
+</html>

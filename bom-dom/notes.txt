@@ -1,0 +1,97 @@
+
+http://www.w3schools.com/jquery/trysel.asp
+
+	Window - The Browser Object Model (BOM)
+	
+	The window object is supported by all browsers. It represent the browser's window.
+	All global JavaScript objects, functions, and variables automatically become members of the window object.
+	
+	window.screen
+	window.navigator
+	window.location
+	
+	window.open();
+	
+	http://www.w3schools.com/js/js_window.asp
+	
+	
+	document.cookie
+	
+	
+	Dom - document object model
+	
+	html tags + text + comments
+	
+	The HTML DOM is a standard for how to get, change, add, or delete HTML elements.
+	
+	Element
+	
+	The easiest way to modify the content of an HTML element is by using the innerHTML property.
+	innerHTML ?
+	
+	document.getElementById(id).style.property=new style
+	
+	Element.style.display = 'none';
+	
+	- kako jquery hendla style+css ?? za razliku od prototype-a
+	
+	http://www.w3schools.com/js/js_htmldom.asp
+	
+	DOM Root Nodes
+    document.documentElement - The full document
+    document.body - The body of the document
+
+	child, parent, sibling, ancestor
+	
+	
+	
+	
+	Selectors / DOM Elements
+	
+	document.getElementById()
+	document.getElementsByTagName()
+	Element.getElementsByTagName()
+	
+	document.getElementsByClassName()
+	Element.getElementsByClassName()
+	
+	
+	document.getElementsByClassName('red test');
+	
+	document.anchors
+    document.forms
+    document.images
+    document.links
+	
+	element = document.querySelector(selectors);
+	elementList = document.querySelectorAll(selectors);
+	
+	https://developer.mozilla.org/en-US/docs/Code_snippets/QuerySelector
+	
+	
+	var x=document.getElementById("main");
+	var y=x.getElementsByTagName("p"); 	
+	
+	<img class="lightbox"
+	<img rel="lightbox"
+	<img data-xyz="lightbox"
+	
+	slower then class!
+	
+	
+	Sizzle - Sizzle supports virtually all CSS 3 Selectors
+	$$('div.lol')
+	
+	
+	Fo' shizzle my nizzle
+	
+	- multiple selector examples!! prototype, jQuery?
+	
+	http://api.jquery.com/category/selectors/
+	
+	
+	
+	firstChild.nodeValue
+	
+	
+	

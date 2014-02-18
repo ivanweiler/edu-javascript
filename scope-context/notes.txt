@@ -1,0 +1,30 @@
+Context (the value of this) is controlled by either the new keyword, in which case the context is the newly created object, or by how a function is invoked. Scope, however, is controlled solely by where the function is defined.
+
+http://innov8d.com/blog/posts/using-javascript-scope-instead-of-context
+http://blog.kevinchisholm.com/javascript/context-object-literals/
+
+What is "this"?
+
+
+http://ryanmorr.com/understanding-scope-and-context-in-javascript/ ++
+
+https://developers.google.com/speed/articles/optimizing-javascript
+
+
+http://joshuakehn.com/2011/10/20/Understanding-JavaScript-Context.html
+
+
+http://ejohn.org/apps/learn/
+
+
+    .bind(this, [, arg1, arg2, ...argN])
+    .apply(this[, arguments])
+    .call(this[, arg1, arg2, ...argN])
+
+Each of these has a distinct role in adjusting the function context. .bind returns a new function with new context. .apply will execute a function in a context with an optional array to expand into arguments. .call executes a function in a context with individual arguments.
+
+Using this structure, we can even manipulate the contexts of anonymous functions on the fly to persist current scope without messy var self = this; statements.
+
+jQuery('.messages').hide(250, messages.cleared.bind(this));
+
+

@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>Inchoo javascript workshop</title>
+<link rel="stylesheet" href="../_engine/codemirror/codemirror.css">
+<link rel="stylesheet" href="../_engine/style.css">
+<style>
+	<!-- custom style goes here -->
+</style>
+</head>
+
+<body>
+<h1>Basics of Javascript</h1>
+
+<h2>Workshop usage guide</h2>
+<h3>Google Chrome or Firefox+Firebug</h3>
+<pre>
+https://developers.google.com/chrome-developer-tools/
+https://getfirebug.com/logging
+</pre>
+<form>
+<textarea>
+alert("Inchoo javascript workshop :]");
+console.log("Inchoo javascript workshop :]");
+
+/* 
+//uncomment me, edit me
+alert("Nasty!");
+*/
+
+//shift+n, shift+s to toggle between modes
+
+</textarea>
+<button type="button">Reset</button>
+<button type="submit">Run</button>
+</form>
+
+<h3>JSFiddle</h3>
+<pre>
+http://jsfiddle.net Online code editor and playground. Register.</pre>
+
+<h2>Basic Language</h2>
+
+<h3>Variables</h3>
+<form>
+<textarea id="code">
+//number
+var n = 5;
+//string
+var s = "Inchoo";
+//boolean
+var b = true;
+//array
+var a = [1,2,3];
+//object
+var o = {'key1':'value1', 'key2':'value2', 5: 88};
+
+//function
+function test() {
+	console.log("Function test was triggered!");
+}
+
+//var test = function(){}
+
+//run function
+test();
+
+
+/*
+var x = "The answer " + "is " + 42;
+var y = 42 + " is the answer";
+
+console.log(x);
+console.log(y);
+*/
+
+</textarea>
+<button type="button">Reset</button>
+<button type="submit">Run</button>
+</form>
+
+
+
+<h3>Data types aka "Everything is an Object"</h3>
+<form class="large">
+<textarea>
+var n = new Number(5);
+var s = new String("Inchoo");
+var b = new Boolean(true);
+var a = new Array(1,2,3);
+var o = new Object();
+o.key1 = 'value1';
+o["key2"] = "value2";
+//delete o.key1
+
+var test = function(){
+	alert(1);
+}
+
+console.log(typeof n);
+console.log(typeof test);
+
+/*
+console.log(n+1);
+console.log(a);
+*/
+
+/*
+s = "Inchoo";
+console.log(typeof s);
+console.log(s.substr(0,4));
+//@question: how come this works?
+*/
+
+</textarea>
+<button type="button">Reset</button>
+<button type="submit">Run</button>
+</form>
+<pre>http://www.w3schools.com/js/js_objects.asp</pre>
+
+
+<h3>Statements</h3>
+<form>
+<textarea>
+//Conditional Statements
+var a = 8;
+if(a<8) {
+	console.log("a<8");
+} else if(a>8) {
+	console.log("a>8");
+} else {
+	console.log("ELSE");
+}
+
+switch (a) {
+  case 2:
+     console.log("2"); break;
+  case 7:
+  case 8:
+    console.log("7 or 8");
+  default:
+    console.log("default"); break;
+}
+
+var a = [1,2,3];
+for (var i = 0; i < a.length; i++) {
+	console.log(a[i]); break;
+}
+
+/*
+do
+   statement
+while (condition);
+*/
+
+/*
+while (condition)
+   statement
+*/
+
+var a = {a:1, b:2, c:3};
+//FOR every property IN the a object
+for (var i in a) {
+	console.log(i+":"+a[i]);
+	//if(a.hasOwnProperty(i)){}
+}
+
+</textarea>
+<button type="button">Reset</button>
+<button type="submit">Run</button>
+</form>
+<pre>
+IMPORTANT CORRECTION (thx Marko M.):
+- "length" is property of String and Array only, so loop through Arrays using for loop and through Objects using for-in loop (as in above example)
+- use Object.hasOwnProperty() to filter if needed (or Object.keys())
+</pre>
+
+<h3>Statements - Additional</h3>
+<form>
+<textarea>
+try {
+	throw "myException"; // generates an exception
+	console.log('I tried');
+}
+catch (e) {
+	//statements to handle any exceptions
+	console.log('catch');
+} finally {
+	console.log('finally');
+}
+</textarea>
+<button type="button">Reset</button>
+<button type="submit">Run</button>
+</form>
+<pre>
+https://developer.mozilla.org/en-US/docs/JavaScript/Guide/Statements
+</pre>
+
+<h3>Global Objects</h3>
+<pre>
+Math, JSON, Date, RegExp ..
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects
+</pre>
+
+
+<h2>Main concepts</h2>
+
+<h3>Javascript in html page</h3>
+<form>
+<textarea data-type="html">
+&lt;head&gt;
+  ..
+  &lt;script src=&quot;skin/jquery.js&quot;&gt;&lt;/script&gt;
+  ..
+&lt;/head&gt;
+
+
+&lt;body&gt;
+  ..
+  &lt;script src=&quot;skin/jquery.js&quot;&gt;&lt;/script&gt;
+  ..
+&lt;/body&gt;
+
+
+&lt;body&gt;
+  ..
+  &lt;script src=&quot;skin/jquery.js&quot;&gt;&lt;/script&gt;
+&lt;/body&gt;
+</textarea>
+<button type="button">Reset</button>
+</form>
+<pre>
+Before or after css ?
+What about inline &lt;script&gt; -s ? 
+Is type="text/javascript" needed ? 
+Asynchronous javascripts (facebook, google analytics, etc.) ?
+</pre>
+
+<h3>Cross browser javascript</h3>
+<pre>
+Does javascript works the same in all browsers?
+Conditional comments (IE)
+</pre>
+<form class="small">
+<textarea data-type="html">
+&lt;!--[if lt IE 9]&gt;
+    &lt;script src=&quot;jquery-1.9.1.js&quot;&gt;&lt;/script&gt;
+&lt;![endif]--&gt;
+&lt;!--[if gte IE 9]&gt;&lt;!--&gt;
+    &lt;script src=&quot;jquery-2.0.0b2.js&quot;&gt;&lt;/script&gt;
+&lt;!--&lt;![endif]--&gt;
+</textarea>
+<button type="button">Reset</button>
+</form>
+
+<h3>Libraries</h3>
+<pre>Prototype, Mootools, Dojo, jQuery, Zepto, ..</pre>
+
+
+<h3>Cross domain and security</h3>
+<pre>
+The same-origin policy restricts how a document or script loaded from one origin can interact with a resource from another origin. Two pages have the same origin if the protocol, port (if one is specified), and host are the same for both pages (iframe, ajax, etc.).
+
+Http vs https is also important thing to mention.
+</pre>
+
+
+<h3>Debugging</h3>
+<pre>
+1. Chrome or Firefox+Firebug. Using console.log() is more than enough. Always test IE after.
+2. Developer Tools by Microsoft for IE
+3. Custom logger, &lt;div id=&quot;debug&quot;&gt;&lt;/div&gt; document.getElementById('debug').innerHTML = "Debug message";
+4. alert(123); for fast things
+</pre>
+<form class="small">
+<textarea>
+//&lt;div id=&quot;debug&quot;&gt;&lt;/div&gt;
+document.getElementById('debug').innerHTML += "Message 1 &lt;br /&gt;";
+</textarea>
+<button type="button">Reset</button>
+<button type="submit">Run</button>
+</form>
+
+<div id="debug"></div>
+
+<h3>Useful services</h3>
+<pre>
+http://caniuse.com/
+http://stackoverflow.com/
+http://google.com/
+</pre>
+
+<!--
+<h3>Dummy</h3>
+<pre>
+
+</pre>
+<form class="small">
+<textarea>
+console.log(123);
+</textarea>
+<button type="button">Reset</button>
+<button type="submit">Run</button>
+</form>
+-->
+
+
+<h2>Additional</h2>
+<h3>Todo</h3>
+<pre>
+String - substr(), substring(), 
+http://www.w3schools.com/jsref/jsref_obj_string.asp
+
+Array - indexOf(), pop(), push(), join()
+http://www.w3schools.com/jsref/jsref_obj_array.asp
+
+Math - floor(), ceil(), round(), max(), min()
+http://www.w3schools.com/jsref/jsref_obj_math.asp
+
+JSON - examine what it is
+
+Date - examine how to get current and elapsed time
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date#Examples
+</pre>
+
+<h3>Resources</h3>
+<pre>
+https://developer.mozilla.org/en-US/docs/JavaScript/Guide
+http://www.w3schools.com/js/default.asp
+
+https://developer.mozilla.org/en-US/docs/JavaScript
+https://developer.mozilla.org/en-US/docs/DOM
+http://www.w3schools.com/jsref/
+
+http://www.html5rocks.com/en/tutorials/speed/script-loading/
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Same_origin_policy_for_JavaScript
+</pre>
+
+
+
+<p class="foot">2013 Ivan Weiler @ Inchoo</p>
+
+<script src="../_engine/jquery-2.0.3.min.js"></script>
+<script src="../_engine/codemirror/codemirror.js"></script>
+<script src="../_engine/codemirror/javascript.js"></script>
+<script src="../_engine/codemirror/xml.js"></script>
+<script src="../_engine/codemirror/css.js"></script>
+<script src="../_engine/codemirror/htmlmixed.js"></script>
+<script src="../_engine/script.js"></script>
+<script>
+<!-- custom js goes here -->
+</script>
+	
+</script>
+</body>
+</html>

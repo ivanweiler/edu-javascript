@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>Inchoo javascript workshop</title>
+<link rel="stylesheet" href="../_engine/codemirror/codemirror.css">
+<link rel="stylesheet" href="../_engine/style.css">
+<style>
+	<!-- custom style goes here -->
+</style>
+</head>
+
+<body>
+<h1>Events</h1>
+
+<h2>Don't call us, we'll call you</h2>
+<h3>Definition</h3>
+<pre>
+Events are signals generated when specific actions occur.
+JavaScript is aware of these signals, and scripts can be built to react to these events.
+</pre>
+
+<h3>Event Attributes - old Netscape model</h3>
+<form class="small">
+<textarea data-type="html">
+&lt;a href="http://inchoo.net" onclick=&quot;alert('Inchoo');&quot;&gt;Click me 1&lt;/a&gt;
+&lt;a href="http://inchoo.net" onclick=&quot;alert('Inchoo'); return false;&quot;&gt;Click me 2&lt;/a&gt;
+
+
+&lt;a href=&quot;javascript:void(0);&quot;&gt;Click me 3&lt;/a&gt;
+</textarea>
+<button type="button">Reset</button>
+</form>
+<br />
+<a href="http://inchoo.net" onclick="alert('Inchoo');" target="_blank">Click me 1</a>
+<a href="http://inchoo.net" onclick="alert('Inchoo'); return false;" target="_blank">Click me 2</a>
+
+
+
+<h3>Event Listeners - old way</h3>
+<form class="">
+<textarea>
+//&lt;a id="click-me-3" href="http://inchoo.net"&gt;Click me 3&lt;/a&gt;
+
+function hook1() {
+	alert('Inchoo');
+	return false;
+}
+
+document.getElementById('click-me-3').onclick = hook1;
+
+</textarea>
+<button type="button">Reset</button><button type="submit">Run</button>
+</form>
+<br />
+<a id="click-me-3" href="http://inchoo.net" target="_blank">Click me 3</a>
+<pre>So, what's the problem with this approach ??</pre>
+
+
+<h3>Event Listeners - back to the future</h3>
+<form>
+<textarea>
+//&lt;a id="click-me-4" href="http://inchoo.net"&gt;Click me 4&lt;/a&gt;
+//target.addEventListener(type, listener[, useCapture]);
+//target.removeEventListener(type, listener[, useCapture])
+
+function hook2() {
+	alert('Inchoo');
+	return false;
+	
+	//e.preventDefault();
+}
+
+document.getElementById('click-me-4').addEventListener('click', hook2);
+</textarea>
+<button type="button">Reset</button><button type="submit">Run</button>
+</form>
+<br />
+<a id="click-me-4" href="http://inchoo.net" target="_blank">Click me 4</a>
+<br />
+<pre>
+Notice the "click" vs "onclick" difference!
+Can this be done with anonymous function?
+</pre>
+
+<!--
+<h3>Event Listener - anonymous function</h3>
+<form class="small">
+<textarea>
+//target.addEventListener(type, listener[, useCapture]);
+
+function hook2(e) {
+	alert('Inchoo');
+	//return false;
+	
+	e.preventDefault();
+}
+
+document.getElementById('link2').addEventListener('click', hook2);
+</textarea>
+<button type="button">Reset</button><button type="submit">Run</button>
+</form>
+<br />
+<a id="link2" href="http://inchoo.net">Link 1</a>
+-->
+
+<h3>Cross browser compatibility</h3>
+<form class="small">
+<textarea>
+//[if lt IE 9]
+if (el.addEventListener) {
+  el.addEventListener('click', listener, false); 
+} else if (el.attachEvent)  {
+  el.attachEvent('onclick', listener);
+}
+</textarea>
+<button type="button">Reset</button>
+</form>
+
+
+<h2>Event Object</h2>
+<h3>Dump</h3>
+<form class="small">
+<textarea>
+//&lt;a id="click-me-5" href="http://inchoo.net"&gt;Click me 5&lt;/a&gt;
+
+document.getElementById('click-me-5').addEventListener('click', function(e){
+	e.preventDefault();
+	console.log(e);
+	console.log(this);
+});
+</textarea>
+<button type="button">Reset</button><button type="submit">Run</button>
+</form>
+<br />
+<a id="click-me-5" href="http://inchoo.net" target="_blank">Click me 5</a>
+<pre>
+Event.preventDefault() - Cancels the event if it is cancelable, without stopping further propagation of the event
+Event.currentTarget, this - Identifies the current target for the event; interesting to use when attaching the same event handler to several elements
+</pre>
+
+
+<h2>Propagation</h2>
+
+<h3>Capturing vs Bubbling</h3>
+<form class="small">
+<textarea data-type="html">
+&lt;div&gt;
+	&lt;a&gt;
+		&lt;span&gt;Click me&lt;/span&gt;
+	&lt;/a&gt;
+&lt;/div&gt;
+</textarea>
+<button type="button">Reset</button>
+</form>
+<pre>
+Bubbling is default! Just remember that you're going from inside.
+Event.stopPropagation();
+</pre>
+
+<h3>Flow</h3>
+<img src="eventflow.png"/>
+
+<h2>Most common examples</h2>
+
+<h3>Which Element has which Event?</h3>
+<pre>RTFM :)</pre>
+<form class="small">
+<textarea>
+for (i in window) {
+  if (/^on/.test(i)) { console.log(i); }
+}
+/*
+for (i in document.getElementById('click-me-4')) {
+  if (/^on/.test(i)) { console.log(i); }
+}
+*/
+</textarea>
+<button type="button">Reset</button><button type="submit">Run</button>
+<pre>- click, change, focus, blur, keyup, keydown, submit, etc.</pre>
+</form>
+
+<h3>onload</h3>
+<form class="small">
+<textarea data-type="html">
+&lt;body onload=&quot;alert('Inchoo');&quot;&gt;
+
+&lt;script&gt;
+	window.addEventListener(&quot;load&quot;, function load(event){ alert('Inchoo'); });
+&lt;/script&gt;
+
+&lt;/body&gt;
+</textarea>
+<button type="button">Reset</button>
+</form>
+<pre>What is dom ready or dom loaded? Is this onload?</pre>
+
+<h3>DOM Ready (aka DOM Loaded)</h3>
+<pre>Are you ready ?</pre>
+<form class="small">
+<textarea>
+//from jQuery core
+document.addEventListener( "DOMContentLoaded", function(){
+	document.removeEventListener( "DOMContentLoaded", arguments.callee, false );
+	jQuery.ready();
+}, false );	
+</textarea>
+<button type="button">Reset</button>
+</form>
+
+<h3>Few Examples</h3>
+<pre>
+http://jsfiddle.net/ivanweiler/YT6BD/
+http://jsfiddle.net/ivanweiler/UgdL6/
+http://jsfiddle.net/ivanweiler/fLqYH/
+</pre>
+
+
+<h2>Additional</h2>
+
+<!--h3>Event listeners and Registry pattern</h3>
+<pre>
+There are several practical problems with native event listeners.
+We can't get list of event listeners from Element itself, for example, get all functions associated with element click in attempt to remove them all. Also, we can't manipulate execution order, register one listener to run before already registered listener ,etc.
+
+But you probbaly noticed that this works in some libraries (off(), stopObserving(), click(), etc.) ..
+
+When you add listener with Element.observe('click', fnc) in prototype.js for example, Prototype is pushing your listener to its internal registry array, and associating it's own function to handle 'click'. When acctual click happen, Prototypes function is really triggered, and that function trigger your functions from its internal stack.
+This is called event registry pattern and the idea is to solve mentioned problems. This is also why it is so easy to just run click() in jQuery.
+Ofc, the only way for this to work in libraries is to use libraries observe(), click(), bind(), etc instead of native addEventListener().
+
+All mentioned problems can be solved with restructuring code a bit in most cases.
+http://stackoverflow.com/a/447106
+
+(thx Matej for great questions)
+</pre-->
+
+<h3>Todo</h3>
+<pre>
+Create "Search entire store here.." functionality like in Magento search box; try using Element.defaultValue or Element.getAttribute('value')
+What is html5 placeholder?
+How do we track change on text input? (eg. client wants ajax cart; plus/minus and qty change triggers ajax cart save)
+</pre>
+<h3>Resources</h3>
+<pre>
+http://coding.smashingmagazine.com/2012/08/17/javascript-events-responding-user/
+http://coding.smashingmagazine.com/2013/11/12/an-introduction-to-dom-events/
+https://developer.mozilla.org/en/docs/Web/API/Event
+https://developer.mozilla.org/en-US/docs/Web/API/EventTarget.addEventListener
+https://developer.mozilla.org/en-US/docs/Web/API/event.preventDefault
+https://www.google.hr/search?q=this+vs+currentTarget
+
+http://www.quirksmode.org/js/introevents.html
+http://www.quirksmode.org/js/events_order.html
+</pre>
+
+
+
+
+<p class="foot">2013 Ivan Weiler @ Inchoo</p>
+
+<script src="../_engine/jquery-2.0.3.min.js"></script>
+<script src="../_engine/codemirror/codemirror.js"></script>
+<script src="../_engine/codemirror/javascript.js"></script>
+<script src="../_engine/codemirror/xml.js"></script>
+<script src="../_engine/codemirror/css.js"></script>
+<script src="../_engine/codemirror/htmlmixed.js"></script>
+<script src="../_engine/script.js"></script>
+<script>
+<!-- custom js goes here -->	
+</script>
+</body>
+</html>

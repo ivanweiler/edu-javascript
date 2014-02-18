@@ -1,0 +1,47 @@
+
+
+http://jsfiddle.net 
+
+
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects
+
+JavaScript_Enlightenment.pdf
+
+
+undefined, null
+
+Every function in JavaScript is actually a Function object.
+
+
+delete?
+
+
+Code Example from JavaScript Enlightenment Book by Cody Lindley
+
+
+todo
+- Math (round), String, Array (push, pop, indexOf) functions
+- iterators
+
+
+
+if ( typeof myVar === “undefined” ) {
+
+
+compatibility, same as css
++
+browser detect vs functionality detection
+ 
+ 
+ [if lt IE 9] !! - ovo bi trebalo
+ 
+ kako koristiti javascript - ne pretjerivati
+ sta je ajax u praksi
+ 
+ cross domain?
+ 
+ koji library-ji, mobile je promjenio stvar
+ 
+ http/https
+ 
+ 

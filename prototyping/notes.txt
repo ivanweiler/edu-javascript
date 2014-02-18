@@ -1,0 +1,92 @@
+
+
+http://yehudakatz.com/2011/08/12/understanding-prototypes-in-javascript/
+
+http://mckoss.com/jscript/object.htm
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Inheritance_and_the_prototype_chain
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/prototype
+http://dmitrysoshnikov.com/ecmascript/javascript-the-core/
+
+All objects in JavaScript are descended from object Object;
+
+all objects inherit methods and properties from Object.prototype
+
+Since Javascript doesn't exactly have sub-class objects, prototype is a useful workaround to make a "base class" object of certain functions that act as objects.
+
+A "constructor" in JavaScript is "just" a function that happens to be called with the new operator.
+
+instanceof 
+hasOwnProperty
+isPrototypeOf
+
+Object.getPrototypeOf(object) 
+
+Object.create()
+
+
+
+var Inchooer = function() {
+    this.isAMotherFucker = true;
+};
+
+Inchooer.prototype.test = function() {
+	return 1;
+}
+
+var a = new Inchooer();
+var b = new Inchooer();
+
+console.log(a.test());
+console.log(b.test());
+
+
+Inchooer.prototype.test = function() {
+	return 2;
+}
+
+console.log(a.test());
+console.log(b.test());
+
+
+
+
+
+var a = false;
+console.log(typeof a);
+console.log(a.__proto__);
+console.log(a.constructor.__proto__.__proto__);
+
+
+
+
+
+
+
+var foo = {name: "foo", one: 1, two: 2};
+var bar = {two: "two", three: 3};
+
+//__proto__ not working in all browsers !!
+bar.__proto__ = foo; // foo is now the prototype of bar.
+ 
+//if we try to access foo's properties from bar from now on, we'll succeed
+bar.one // Resolves to 1.
+ 
+//the child object's properties are also accessible
+bar.three // Resolves to 3.
+ 
+// Own properties shadow prototype properties
+bar.two; // Resolves to "two"
+foo.name; // unaffected, resolves to "foo"
+bar.name; // Resolves to "foo"
+
+
+
+if (typeof Object.create !== 'function') {
+    Object.create = function (o) {
+        function F() {}
+        F.prototype = o;
+        return new F();
+    };
+}
+newObject = Object.create(oldObject);
+
